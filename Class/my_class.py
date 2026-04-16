@@ -69,7 +69,7 @@ class Queue:
         """
         Метод для отображения первого элемента
         :return:
-            Возращает строку очередь пуста или первый элемент
+            Возвращает строку очередь пуста или первый элемент
         """
         if not self.head:
             print(f'Очередь пуста')
@@ -80,7 +80,7 @@ class Queue:
         """
         Метод для отображения последнего элемента
         :return:
-            Возращает строку очередь пуста или последний элемент
+            Возвращает строку очередь пуста или последний элемент
         """
         if not self.head:
             print(f'Очередь пуста')
@@ -163,21 +163,32 @@ class QueuePriority(Queue):
                 self.tail = new_node
 
 
-def pull_highest_priority_element(self):
-    """Удаляет самый приоритетный элемент (голову)"""
-    if not self.head:
-        return None
+    def pull_highest_priority_element(self):
+        """Удаляет самый приоритетный элемент (голову)"""
+        if not self.head:
+            return None
 
-    # Проверяем, что голова - приоритетная
-    if isinstance(self.head.data, dict) and "priority" in self.head.data:
-        dequeue_item = self.head
-        self.head = self.head.next_node
-        if not self.head:  # очередь стала пустой
-            self.tail = None
-        return dequeue_item.data
-    else:
-        print("Нет приоритетных элементов")
-        return None
+        # Проверяем, что голова - приоритетная
+        if isinstance(self.head.data, dict) and "priority" in self.head.data:
+            dequeue_item = self.head
+            self.head = self.head.next_node
+            if not self.head:  # очередь стала пустой
+                self.tail = None
+            return dequeue_item.data
+        else:
+            print("Нет приоритетных элементов")
+            return None
+
+    def peek(self):
+        """Просмотр первого элемента (если он приоритетный)"""
+        if not self.head:
+            print("Очередь пуста")
+            return None
+
+        if isinstance(self.head.data, dict) and "priority" in self.head.data:
+            return self.head.data
+        else:
+            return None
 
 if __name__ == '__main__':
     node = Node(1)

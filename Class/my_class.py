@@ -123,6 +123,46 @@ class Queue:
             # Очередь не пустая
             return False
 
+class QueuePriority(Queue):
+    def __init__(self, max_length, head=None, tail=None):
+        super().__init__(max_length, head, tail)
+
+    def insert_with_priority(self, data):
+        """
+        Вставка элемента с приоритетом
+        Приоритетные элементы вставляются ПОСЛЕ всех существующих приоритетных
+        """
+        if self.size() >= self.max_length:
+            print("Очередь переполнена")
+            return
+
+        new_node = Node(data)
+
+        if not self.head:
+            # Очередь пуста
+            self.head = new_node
+            self.tail = new_node
+
+        elif "priority" not in self.head.data:
+            # Голова НЕ приоритетная → вставляем в начало
+            new_node.next_node = self.head
+            self.head = new_node
+
+        else:
+            # Ищем последний приоритетный элемент
+            current = self.head
+            while current.next_node and "priority" in current.next_node.data:
+                current = current.next_node
+
+            # Вставляем после последнего приоритетного
+            new_node.next_node = current.next_node
+            current.next_node = new_node
+
+            # Если вставили в конец, обновляем tail
+            if not new_node.next_node:
+                self.tail = new_node
+
+
 if __name__ == '__main__':
     node = Node(1)
     queue = Queue(3, node, node)
@@ -135,3 +175,17 @@ if __name__ == '__main__':
     for _ in range(queue.size()):
         queue.dequeue()
     print(queue.is_empty())
+
+d1 = {"name": "Иван"}
+d2 = {"priority": "1"}
+d3 = {"priority": "3"}
+node = Node(d1)
+queue_1 = QueuePriority(4, node, node)
+for i in range(2, 6):
+    queue_1.enqueue(i)
+queue_1.show()
+print('____')
+queue_1.insert_with_priority(d2)
+queue_1.insert_with_priority(d3)
+queue_1.show()
+

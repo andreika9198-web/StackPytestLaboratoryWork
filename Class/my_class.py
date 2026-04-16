@@ -1,18 +1,37 @@
 class Node:
+    """
+    Узел односвязного списка для использования в стеке
+    data:
+        Хранимые данные
+    next_node:
+        Ссылка на следующий узел
+    """
     def __init__(self,data , next_node = None):
         self.data = data
         self.next_node = next_node
 
 class Queue:
+    """
+    Класс для создания очереди
+    Помимо стандартных методов enqueue и dequeue
+    Используются: is_empty, is_full, size_stack,peek_first,peek_last,show,
+    """
     def __init__(self,max_length, head=None, tail=None):
         self.head = head
         self.tail = tail
         self.max_length = max_length
 
     def enqueue(self, data):
-        if self.is_full():
+        """
+        Метод для добавления данных в очередь
+        :param data:
+            принимает любые данные
+        :return:
+        """
+        if self.size() >= self.max_length:
             print('Очередь переполнена')
             return
+
         new_node = Node(data)
         if not self.head:
             self.head = new_node
@@ -21,6 +40,11 @@ class Queue:
         self.tail = new_node
 
     def dequeue(self):
+        """
+        Метод для удаления данных из очереди
+        :return:
+            None или dequeue_item.data(удаленные данные)
+        """
         if not self.head:
             return None
         else:
@@ -28,7 +52,12 @@ class Queue:
             self.head = self.head.next_node
             return dequeue_item.data
 
-    def size_stack(self):
+    def size(self):
+        """
+        Метод для подсчета количество элементов в очереди
+        :return:
+            counter
+        """
         counter = 0
         stack_item = self.head
         while stack_item:
@@ -37,18 +66,31 @@ class Queue:
         return counter
 
     def peek_first(self):
+        """
+        Метод для отображения первого элемента
+        :return:
+            Возращает строку очередь пуста или первый элемент
+        """
         if not self.head:
             print(f'Очередь пуста')
         else:
             print(self.head.data)
 
     def peek_last(self):
+        """
+        Метод для отображения последнего элемента
+        :return:
+            Возращает строку очередь пуста или последний элемент
+        """
         if not self.head:
             print(f'Очередь пуста')
         else:
             print(self.tail.data)
 
     def show(self):
+        """
+        Метод для отображения все элементов очереди
+        """
         if not self.head:
             print(f'Очередь пуста')
         else:
@@ -58,14 +100,22 @@ class Queue:
                 current = current.next_node
 
     def is_full(self):
-        if self.size_stack() == self.max_length:
-            # print('Стек полон')
+        """
+           Метод для определения является ли очередь полностью заполненным
+        :return:
+            True или False
+        """
+        if self.size() == self.max_length:
             return True
         else:
-            # print('Стек пуст')
             return False
 
     def is_empty(self):
+        """
+           Метод для определения является ли очередь полностью пустой
+        :return:
+            True или False
+        """
         if not self.head:
             #Очередь пуста
             return True
@@ -82,6 +132,6 @@ if __name__ == '__main__':
 
     print(queue.is_full())
     print(queue.is_empty())
-    for _ in range(queue.size_stack()):
+    for _ in range(queue.size()):
         queue.dequeue()
     print(queue.is_empty())

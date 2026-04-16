@@ -10,7 +10,7 @@ class Queue:
         self.max_length = max_length
 
     def enqueue(self, data):
-        if self.size_stack() >= self.max_length:
+        if self.is_full():
             print('Очередь переполнена')
             return
         new_node = Node(data)
@@ -58,8 +58,20 @@ class Queue:
                 current = current.next_node
 
     def is_full(self):
-        pass
+        if self.size_stack() == self.max_length:
+            # print('Стек полон')
+            return True
+        else:
+            # print('Стек пуст')
+            return False
 
+    def is_empty(self):
+        if not self.head:
+            #Очередь пуста
+            return True
+        else:
+            # Очередь не пустая
+            return False
 
 if __name__ == '__main__':
     node = Node(1)
@@ -68,3 +80,8 @@ if __name__ == '__main__':
         queue.enqueue(i)
     queue.show()
 
+    print(queue.is_full())
+    print(queue.is_empty())
+    for _ in range(queue.size_stack()):
+        queue.dequeue()
+    print(queue.is_empty())

@@ -163,6 +163,22 @@ class QueuePriority(Queue):
                 self.tail = new_node
 
 
+def pull_highest_priority_element(self):
+    """Удаляет самый приоритетный элемент (голову)"""
+    if not self.head:
+        return None
+
+    # Проверяем, что голова - приоритетная
+    if isinstance(self.head.data, dict) and "priority" in self.head.data:
+        dequeue_item = self.head
+        self.head = self.head.next_node
+        if not self.head:  # очередь стала пустой
+            self.tail = None
+        return dequeue_item.data
+    else:
+        print("Нет приоритетных элементов")
+        return None
+
 if __name__ == '__main__':
     node = Node(1)
     queue = Queue(3, node, node)
@@ -180,8 +196,8 @@ d1 = {"name": "Иван"}
 d2 = {"priority": "1"}
 d3 = {"priority": "3"}
 node = Node(d1)
-queue_1 = QueuePriority(4, node, node)
-for i in range(2, 6):
+queue_1 = QueuePriority(7, node, node)
+for i in range(3):
     queue_1.enqueue(i)
 queue_1.show()
 print('____')

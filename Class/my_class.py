@@ -244,6 +244,22 @@ class QueuePriority(Queue):
             self.tail.next_node = new_node
         self.tail = new_node
 
+class User:
+    def __init__(self,head=None, tail=None):
+        self.head = head
+        self.tail = tail
+
+
+    def add_user(self,data):
+        new_node = Node(data)
+        if not self.head:
+            self.head = new_node
+        else:
+            new_node.next_node = self.head
+            self.head = new_node
+
+
+
 if __name__ == '__main__':
     node = Node(1)
     queue = Queue(3, node, node)

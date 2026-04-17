@@ -268,7 +268,6 @@ class User:
                 print(f'Список пуст')
                 return None
             removed_node = self.head
-            # self.head = removed_node.next_node
             self.head = self.head.next_node
             print(f'Удалили пользователя {removed_node.data['name']}')
             return removed_node.data
@@ -293,6 +292,22 @@ class User:
             while current:
                 print(current.data)
                 current = current.next_node
+    def rename(self,data,new_data):
+        """
+        Метод для изменения имени пользователя
+        """
+        if not self.head:
+            print(f'Очередь пуста')
+            return None
+        else:
+            current = self.head
+            while current:
+                if current.data['name'] == data['name']:
+                    current.data['name'] = new_data
+                    return True
+                current = current.next_node
+            print("Пользователь не найден")
+            return None
 
 if __name__ == '__main__':
 
@@ -304,7 +319,12 @@ if __name__ == '__main__':
     print('_____')
     user.remove_user({"name": "Иван", "password": "123"})
     user.show()
-
+    print('_____')
+    user.rename({"name": "Алекс", "password": "123"},"Андрей")
+    user.show()
+    print('_____')
+    user.rename({"name": "Алекс", "password": "123"},"Андрей")
+    user.show()
 #     queue = Queue(3, node, node)
 #     for i in range(2, 6):
 #         queue.enqueue(i)

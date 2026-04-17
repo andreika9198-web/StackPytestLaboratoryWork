@@ -131,13 +131,17 @@ class QueuePriority(Queue):
         """
         Вставка элемента с приоритетом
         Приоритетные элементы вставляются ПОСЛЕ всех существующих приоритетных
+        :param data:
+
         """
+        if not isinstance(data, dict) or "priority" not in data:
+            print('Ошибка: добавить можно только словарь с ключом "priority"')
+            return
         if self.size() >= self.max_length:
             print("Очередь переполнена")
             return
 
         new_node = Node(data)
-
         if not self.head:
             # Очередь пуста
             self.head = new_node
@@ -162,26 +166,33 @@ class QueuePriority(Queue):
             if not new_node.next_node:
                 self.tail = new_node
 
-
-
     def pull_highest_priority_element(self):
-        """Удаляет самый приоритетный элемент (голову)"""
+        """
+        Удаляет самый приоритетный элемент (голову)
+        :return: удаленный элемент или None
+        """
         if not self.head:
+            print("Очередь пуста")
             return None
 
-        # Проверяем, что голова - приоритетная
-        if isinstance(self.head.data, dict) and "priority" in self.head.data:
-            dequeue_item = self.head
-            self.head = self.head.next_node
-            if not self.head:  # очередь стала пустой
-                self.tail = None
-            return dequeue_item.data
-        else:
+        if not isinstance(self.head.data, dict) or "priority" not in self.head.data:
             print("Нет приоритетных элементов")
             return None
 
+        # Удаляем голову (она приоритетная)
+        dequeue_item = self.head
+        self.head = self.head.next_node
+        if not self.head:  # очередь стала пустой
+            self.tail = None
+
+        return dequeue_item.data
+
     def peek(self):
-        """Просмотр первого элемента (если он приоритетный)"""
+        """
+        Просмотр первого элемента (если он приоритетный)
+        :return
+            возвращает None или self.head.data(первый приоритетный элемент)
+        """
         if not self.head:
             print("Очередь пуста")
             return None
@@ -193,7 +204,9 @@ class QueuePriority(Queue):
 
     def show(self):
         """
-        Метод для отображения все элементов очереди
+        Метод для отображения все элементов очереди.
+        Отображает сначала приоритетные элементы и дает им порядковый номер,
+        потом идет отображение не приоритетных элементов с присвоением номера
         """
         if not self.head:
             print(f'Очередь пуста')
@@ -205,9 +218,10 @@ class QueuePriority(Queue):
                     count += 1
                     print(f'Приоритетный элемент номер {count} данные элемента - {current.data["priority"]}')
                 elif isinstance(current.data, dict) and "no_priority" in current.data:
-                    print(f'Не приоритетный элемент номер {count} данные элемента - {current.data["no_priority"]}')
                     count += 1
+                    print(f'Не приоритетный элемент номер {count} данные элемента - {current.data["no_priority"]}')
                 else:
+                    count += 1
                     print(current.data)
                 current = current.next_node
 
@@ -256,5 +270,21 @@ queue_1.insert_with_priority({"priority": "1"})
 queue_1.insert_with_priority(d3)
 queue_1.enqueue({"no_priority": "5"})
 queue_1.enqueue(10)
+queue_1.show()
+print('____')
+queue_1.pull_highest_priority_element()
+queue_1.show()
+print('____')
+queue_1.pull_highest_priority_element()
+queue_1.show()
+print('____')
+queue_1.pull_highest_priority_element()
+queue_1.show()
+print('____')
+queue_1.insert_with_priority({"no_priority": "7"})
+queue_1.show()
+
+print('____')
+queue_1.insert_with_priority({"priority": "6"})
 queue_1.show()
 

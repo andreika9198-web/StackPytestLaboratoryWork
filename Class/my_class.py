@@ -163,6 +163,7 @@ class QueuePriority(Queue):
                 self.tail = new_node
 
 
+
     def pull_highest_priority_element(self):
         """Удаляет самый приоритетный элемент (голову)"""
         if not self.head:
@@ -190,6 +191,45 @@ class QueuePriority(Queue):
         else:
             return None
 
+    def show(self):
+        """
+        Метод для отображения все элементов очереди
+        """
+        if not self.head:
+            print(f'Очередь пуста')
+        else:
+            current = self.head
+            count = 0
+            while current:
+                if isinstance(current.data, dict) and "priority" in current.data:
+                    count += 1
+                    print(f'Приоритетный элемент номер {count} данные элемента - {current.data["priority"]}')
+                elif isinstance(current.data, dict) and "no_priority" in current.data:
+                    print(f'Не приоритетный элемент номер {count} данные элемента - {current.data["no_priority"]}')
+                    count += 1
+                else:
+                    print(current.data)
+                current = current.next_node
+
+    def enqueue(self, data):
+        """
+        Метод для добавления данных в очередь
+        :param data:
+            принимает любые данные
+        :return:
+        """
+        if self.size() >= self.max_length - 2:
+            #Зарезервировал два элемента для приоритетных
+            print('Очередь переполнена')
+            return
+
+        new_node = Node(data)
+        if not self.head:
+            self.head = new_node
+        else:
+            self.tail.next_node = new_node
+        self.tail = new_node
+
 if __name__ == '__main__':
     node = Node(1)
     queue = Queue(3, node, node)
@@ -207,12 +247,14 @@ d1 = {"name": "Иван"}
 d2 = {"priority": "1"}
 d3 = {"priority": "3"}
 node = Node(d1)
-queue_1 = QueuePriority(7, node, node)
+queue_1 = QueuePriority(10, node, node)
 for i in range(3):
     queue_1.enqueue(i)
 queue_1.show()
 print('____')
-queue_1.insert_with_priority(d2)
+queue_1.insert_with_priority({"priority": "1"})
 queue_1.insert_with_priority(d3)
+queue_1.enqueue({"no_priority": "5"})
+queue_1.enqueue(10)
 queue_1.show()
 

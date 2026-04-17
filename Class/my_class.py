@@ -292,22 +292,34 @@ class User:
             while current:
                 print(current.data)
                 current = current.next_node
-    def rename(self,data,new_data):
+
+    def update_field(self,data,new_data,search):
         """
-        Метод для изменения имени пользователя
+        Универсальный метод для изменения любого поля пользователя
+
+         param data:
+            data: имя пользователя для поиска
+            new_data: новое значение
+            search: поле для изменения ('name', 'password', 'email' и т.д.)
+        return:
+            True если данные успешно изменены,
+            False если очередь пуста или пользователь не найден
         """
+
         if not self.head:
             print(f'Очередь пуста')
-            return None
+            return False
         else:
             current = self.head
             while current:
-                if current.data['name'] == data['name']:
-                    current.data['name'] = new_data
+                if current.data['name'] == data:
+                    old_data = current.data[search]
+                    current.data[search] = new_data
+                    print(f"Данные {search}: {old_data} были изменены на {new_data}")
                     return True
                 current = current.next_node
             print("Пользователь не найден")
-            return None
+            return False
 
 if __name__ == '__main__':
 
@@ -320,11 +332,17 @@ if __name__ == '__main__':
     user.remove_user({"name": "Иван", "password": "123"})
     user.show()
     print('_____')
-    user.rename({"name": "Алекс", "password": "123"},"Андрей")
+    user.update_field( "Алекс","Андрей","name")
     user.show()
     print('_____')
-    user.rename({"name": "Алекс", "password": "123"},"Андрей")
+    user.update_field("Макс", '345',"password")
     user.show()
+    # print('_____')
+    # user.rename({"name": "Алекс", "password": "123"},"Андрей")
+    # user.show()
+    # print('_____')
+    # user.new_password({"name": "Макс", "password": "123"},'345')
+    # user.show()
 #     queue = Queue(3, node, node)
 #     for i in range(2, 6):
 #         queue.enqueue(i)

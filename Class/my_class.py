@@ -253,7 +253,7 @@ class User:
         """
         Метод для добавления новых пользователей
         :param data:
-        :return:
+            Данные нового пользователя
         """
         new_node = Node(data)
         if not self.head:
@@ -265,8 +265,10 @@ class User:
     def remove_user(self, rm_data):
         """
         Метод для удаления пользователя.
-        :param rm_data: Имя пользователя для удаления (строка)
-        :return: данные удалённого пользователя или None
+        :param rm_data:
+            Имя пользователя для удаления (строка)
+        :return:
+            данные удалённого пользователя или None
         """
         if not self.head:
             print(f'Список пуст')
@@ -326,6 +328,26 @@ class User:
             print("Пользователь не найден")
             return False
 
+    def is_user(self,data):
+        """
+        Метод для проверки существования пользователя в очереди.
+        :param data:
+            Имя пользователя для поиска (строка)
+        :return:
+         True если пользователь найден, False если нет
+        """
+        if not self.head:
+            print(f'Очередь пуста')
+            return False
+        else:
+            current = self.head
+            while current:
+                if current.data['name'] == data:
+                    print(f"Пользователь {data} был найден")
+                    return True
+                current = current.next_node
+            print(f"Пользователь {data} не был найден")
+            return False
 if __name__ == '__main__':
 
     node = Node({"name": "Иван", "password": "123"})
@@ -342,6 +364,9 @@ if __name__ == '__main__':
     print('_____')
     user.update_field("Макс", '345',"password")
     user.show()
+    user.is_user("Макс")
+    user.is_user("Антон")
+
     # print('_____')
     # user.rename({"name": "Алекс", "password": "123"},"Андрей")
     # user.show()

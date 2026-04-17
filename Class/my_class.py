@@ -263,18 +263,23 @@ class User:
             self.head = new_node
 
     def remove_user(self, rm_data):
-        if rm_data['name'] == self.head.data['name']:
-            if not self.head:
-                print(f'Список пуст')
-                return None
+        """
+        Метод для удаления пользователя.
+        :param rm_data: Имя пользователя для удаления (строка)
+        :return: данные удалённого пользователя или None
+        """
+        if not self.head:
+            print(f'Список пуст')
+            return None
+        if rm_data == self.head.data['name']:
             removed_node = self.head
             self.head = self.head.next_node
-            print(f'Удалили пользователя {removed_node.data['name']}')
+            print(f"Удалили пользователя {removed_node.data['name']}")
             return removed_node.data
 
         current_node = self.head
         while current_node and current_node.next_node:
-            if current_node.next_node.data['name'] == rm_data['name']:
+            if current_node.next_node.data['name'] == rm_data:
                 removed_node = current_node.next_node
                 current_node.next_node = current_node.next_node.next_node
                 return removed_node.data
@@ -329,7 +334,7 @@ if __name__ == '__main__':
     user.add_user({"name": "Алекс", "password": "123"})
     user.show()
     print('_____')
-    user.remove_user({"name": "Иван", "password": "123"})
+    user.remove_user("Иван")
     user.show()
     print('_____')
     user.update_field( "Алекс","Андрей","name")

@@ -249,8 +249,12 @@ class User:
         self.head = head
         self.tail = tail
 
-
     def add_user(self,data):
+        """
+        Метод для добавления новых пользователей
+        :param data:
+        :return:
+        """
         new_node = Node(data)
         if not self.head:
             self.head = new_node
@@ -258,49 +262,88 @@ class User:
             new_node.next_node = self.head
             self.head = new_node
 
+    def remove_user(self, rm_data):
+        if rm_data['name'] == self.head.data['name']:
+            if not self.head:
+                print(f'Список пуст')
+                return None
+            removed_node = self.head
+            # self.head = removed_node.next_node
+            self.head = self.head.next_node
+            print(f'Удалили пользователя {removed_node.data['name']}')
+            return removed_node.data
 
+        current_node = self.head
+        while current_node and current_node.next_node:
+            if current_node.next_node.data['name'] == rm_data['name']:
+                removed_node = current_node.next_node
+                current_node.next_node = current_node.next_node.next_node
+                return removed_node.data
+            current_node = current_node.next_node
+        return None
+
+    def show(self):
+        """
+        Метод для отображения все элементов очереди
+        """
+        if not self.head:
+            print(f'Очередь пуста')
+        else:
+            current = self.head
+            while current:
+                print(current.data)
+                current = current.next_node
 
 if __name__ == '__main__':
-    node = Node(1)
-    queue = Queue(3, node, node)
-    for i in range(2, 6):
-        queue.enqueue(i)
-    queue.show()
 
-    print(queue.is_full())
-    print(queue.is_empty())
-    for _ in range(queue.size()):
-        queue.dequeue()
-    print(queue.is_empty())
+    node = Node({"name": "Иван", "password": "123"})
+    user = User(node, node)
+    user.add_user({"name": "Макс", "password": "123"})
+    user.add_user({"name": "Алекс", "password": "123"})
+    user.show()
+    print('_____')
+    user.remove_user({"name": "Иван", "password": "123"})
+    user.show()
 
-d1 = {"name": "Иван"}
-d2 = {"priority": "1"}
-d3 = {"priority": "3"}
-node = Node(d1)
-queue_1 = QueuePriority(10, node, node)
-for i in range(3):
-    queue_1.enqueue(i)
-queue_1.show()
-print('____')
-queue_1.insert_with_priority({"priority": "1"})
-queue_1.insert_with_priority(d3)
-queue_1.enqueue({"no_priority": "5"})
-queue_1.enqueue(10)
-queue_1.show()
-print('____')
-queue_1.pull_highest_priority_element()
-queue_1.show()
-print('____')
-queue_1.pull_highest_priority_element()
-queue_1.show()
-print('____')
-queue_1.pull_highest_priority_element()
-queue_1.show()
-print('____')
-queue_1.insert_with_priority({"no_priority": "7"})
-queue_1.show()
-
-print('____')
-queue_1.insert_with_priority({"priority": "6"})
-queue_1.show()
+#     queue = Queue(3, node, node)
+#     for i in range(2, 6):
+#         queue.enqueue(i)
+#     queue.show()
+#
+#     print(queue.is_full())
+#     print(queue.is_empty())
+#     for _ in range(queue.size()):
+#         queue.dequeue()
+#     print(queue.is_empty())
+#
+# d1 = {"name": "Иван"}
+# d2 = {"priority": "1"}
+# d3 = {"priority": "3"}
+# node = Node(d1)
+# queue_1 = QueuePriority(10, node, node)
+# for i in range(3):
+#     queue_1.enqueue(i)
+# queue_1.show()
+# print('____')
+# queue_1.insert_with_priority({"priority": "1"})
+# queue_1.insert_with_priority(d3)
+# queue_1.enqueue({"no_priority": "5"})
+# queue_1.enqueue(10)
+# queue_1.show()
+# print('____')
+# queue_1.pull_highest_priority_element()
+# queue_1.show()
+# print('____')
+# queue_1.pull_highest_priority_element()
+# queue_1.show()
+# print('____')
+# queue_1.pull_highest_priority_element()
+# queue_1.show()
+# print('____')
+# queue_1.insert_with_priority({"no_priority": "7"})
+# queue_1.show()
+#
+# print('____')
+# queue_1.insert_with_priority({"priority": "6"})
+# queue_1.show()
 

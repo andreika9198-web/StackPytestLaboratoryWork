@@ -78,13 +78,27 @@ def test_06_02_show(queue_obj_filled):
 
 def test_07_01_is_full(queue_obj_full):
     """
-       Тест для проверки является ли очередь полностью заполненной(стек полон)
+    Тест для проверки является ли очередь полностью заполненной(стек полон)
     """
     assert queue_obj_full.is_full() == True
 
 def test_07_02_is_full(queue_obj_filled):
     """
-       Тест для проверки является ли очередь полностью заполненной
-       (стек частично заполнен)
+    Тест для проверки является ли очередь полностью заполненной
+    (стек частично заполнен)
     """
     assert queue_obj_filled.is_full() == False
+
+def test_08_01_is_empty(queue_obj):
+    """
+    Тест для проверки является ли очередь полностью пустой
+    (стек пуст)
+    """
+    assert queue_obj.is_empty() == True
+
+def test_08_02_is_empty(queue_obj_filled):
+    """
+    Тест для проверки является ли очередь полностью пустой
+    (стек частично заполнен)
+    """
+    assert queue_obj_filled.is_empty() == False

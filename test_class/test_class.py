@@ -16,3 +16,6 @@ def test_02_01_dequeue(queue_obj):
 
 def test_02_02_dequeue(queue_obj_filled):
     assert queue_obj_filled.dequeue() == 0
+
+def test_03_01_size(queue_obj_filled):
+    assert  queue_obj_filled.size() == 5

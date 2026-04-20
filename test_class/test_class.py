@@ -63,3 +63,9 @@ def test_05_02_peek_last(queue_obj_filled):
     """
     assert queue_obj_filled.peek_last() == True
     assert queue_obj_filled.tail.data == 4
+
+def test_06_01_show(queue_obj):
+    assert queue_obj.show() == False
+
+def test_06_02_show(queue_obj_filled):
+    assert queue_obj_filled.show() == True

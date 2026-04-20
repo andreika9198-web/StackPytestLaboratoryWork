@@ -47,7 +47,7 @@ class Queue:
             None или dequeue_item.data(удаленные данные)
         """
         if not self.head:
-            return False
+            return False # Добавил для тестирования
         else:
             dequeue_item = self.head
             self.head = self.head.next_node
@@ -74,7 +74,7 @@ class Queue:
         """
         if not self.head:
             print(f'Очередь пуста')
-            return False
+            return False # Добавил для тестирования
         else:
             print(self.head.data)
             return True
@@ -87,7 +87,7 @@ class Queue:
         """
         if not self.head:
             print(f'Очередь пуста')
-            return False
+            return False # Добавил для тестирования
         else:
             print(self.tail.data)
             return True
@@ -98,12 +98,13 @@ class Queue:
         """
         if not self.head:
             print(f'Очередь пуста')
+            return False
         else:
             current = self.head
             while current:
                 print(current.data)
                 current = current.next_node
-
+            return True # Добавил для тестирования
     def is_full(self):
         """
            Метод для определения является ли очередь полностью заполненным

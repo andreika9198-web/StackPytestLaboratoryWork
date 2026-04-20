@@ -175,15 +175,15 @@ class QueuePriority(Queue):
     def pull_highest_priority_element(self):
         """
         Удаляет самый приоритетный элемент (голову)
-        :return: удаленный элемент или None
+        :return: удаленный элемент или False
         """
         if not self.head:
             print("Очередь пуста")
-            return None
+            return False
 
         if not isinstance(self.head.data, dict) or "priority" not in self.head.data:
             print("Нет приоритетных элементов")
-            return None
+            return False
 
         # Удаляем голову (она приоритетная)
         dequeue_item = self.head
@@ -226,9 +226,9 @@ class QueuePriority(Queue):
                 elif isinstance(current.data, dict) and "no_priority" in current.data:
                     count += 1
                     print(f'Не приоритетный элемент номер {count} данные элемента - {current.data["no_priority"]}')
-                else:
-                    count += 1
-                    print(current.data)
+                # else:
+                #     count += 1
+                #     print(current.data)
                 current = current.next_node
 
     def enqueue(self, data):

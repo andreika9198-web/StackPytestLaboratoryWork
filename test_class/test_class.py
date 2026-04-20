@@ -138,3 +138,12 @@ def test_09_04_insert_with_priority(queue_priority_obj_filled_3):
       """
     assert queue_priority_obj_filled_3.insert_with_priority({"priority": f'data_7'}) == True
     assert queue_priority_obj_filled_3.tail.data == {"priority": f'data_7'}
+
+def test_10_01_pull_highest_priority_element(queue_priority_obj):
+    assert queue_priority_obj.pull_highest_priority_element() == False
+    queue_priority_obj.insert_with_priority({"priority": f'data_7'})
+    assert queue_priority_obj.pull_highest_priority_element() == {"priority": f'data_7'}
+    assert queue_priority_obj.tail is None
+
+def test_10_02_pull_highest_priority_element(queue_priority_obj_filled_2):
+    assert queue_priority_obj_filled_2.pull_highest_priority_element() == False

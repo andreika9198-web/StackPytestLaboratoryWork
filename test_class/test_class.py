@@ -124,26 +124,53 @@ def  test_09_02_insert_with_priority(queue_priority_obj_filled_2):
 
 def test_09_03_insert_with_priority(queue_priority_obj_filled_1):
     """
-      Тест для проверки добавление в частично заполненный стек,
-      приоритетными и не приоритетными элементами
-      """
+    Тест для проверки добавление в частично заполненный стек,
+    приоритетными и не приоритетными элементами
+    """
     assert queue_priority_obj_filled_1.insert_with_priority({"priority": f'data_7'}) == True
     assert queue_priority_obj_filled_1.head.data != {"priority": f'data_7'}
     assert queue_priority_obj_filled_1.tail.data != {"priority": f'data_7'}
 
 def test_09_04_insert_with_priority(queue_priority_obj_filled_3):
     """
-      Тест для проверки добавление в частично заполненный стек,
-      приоритетными элементами
-      """
+    Тест для проверки добавление в частично заполненный стек,
+    приоритетными элементами
+    """
     assert queue_priority_obj_filled_3.insert_with_priority({"priority": f'data_7'}) == True
     assert queue_priority_obj_filled_3.tail.data == {"priority": f'data_7'}
 
 def test_10_01_pull_highest_priority_element(queue_priority_obj):
+    """
+    Тест для проверки удаления из пустого стека стек,
+    """
     assert queue_priority_obj.pull_highest_priority_element() == False
     queue_priority_obj.insert_with_priority({"priority": f'data_7'})
     assert queue_priority_obj.pull_highest_priority_element() == {"priority": f'data_7'}
     assert queue_priority_obj.tail is None
 
 def test_10_02_pull_highest_priority_element(queue_priority_obj_filled_2):
+    """
+    Тест для проверки удаления из частично заполненного стека,
+    не приоритетными элементами
+    """
     assert queue_priority_obj_filled_2.pull_highest_priority_element() == False
+
+def test_11_01_peek(queue_priority_obj):
+    """
+    Тест для проверки возращения первого приоритетного элемента(стек пуст)
+    """
+    assert queue_priority_obj.peek() == False
+
+def test_11_02_peek(queue_priority_obj_filled_1):
+    """
+    Тест для проверки возращения первого приоритетного
+    элемента(частично заполненного стека)
+    """
+    assert queue_priority_obj_filled_1.peek() == {'priority': 'data_0'}
+
+def test_11_03_peek(queue_priority_obj_filled_2):
+    """
+    Тест для проверки возращения первого приоритетного
+    элемента(частично заполненного стека не приоритетными элементами)
+    """
+    assert queue_priority_obj_filled_2.peek() == False

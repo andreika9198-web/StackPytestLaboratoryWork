@@ -201,12 +201,12 @@ class QueuePriority(Queue):
         """
         if not self.head:
             print("Очередь пуста")
-            return None
+            return False
 
         if isinstance(self.head.data, dict) and "priority" in self.head.data:
             return self.head.data
         else:
-            return None
+            return False
 
     def show(self):
         """

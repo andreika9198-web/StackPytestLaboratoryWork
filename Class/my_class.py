@@ -142,10 +142,10 @@ class QueuePriority(Queue):
         """
         if not isinstance(data, dict) or "priority" not in data:
             print('Ошибка: добавить можно только словарь с ключом "priority"')
-            return None
+            return False
         if self.size() >= self.max_length:
             print("Очередь переполнена")
-            return None
+            return False
 
         new_node = Node(data)
         if not self.head:

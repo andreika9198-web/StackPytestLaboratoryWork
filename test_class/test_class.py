@@ -1,5 +1,6 @@
 import pytest
 
+#Тестируем класс Queue
 def test_01_01_enqueue(queue_obj_full):
     """
     Тест для проверки добавление в полный стек
@@ -102,3 +103,38 @@ def test_08_02_is_empty(queue_obj_filled):
     (стек частично заполнен)
     """
     assert queue_obj_filled.is_empty() == False
+
+#Тестируем класс QueuePriority
+def test_09_01_insert_with_priority(queue_priority_obj):
+    """
+    Тест для проверки добавление в пустой стек
+    """
+    assert queue_priority_obj.insert_with_priority(1) == False
+    assert queue_priority_obj.insert_with_priority({"no_priority": f'data_7'}) == False
+    assert queue_priority_obj.insert_with_priority({"priority": f'data_7'}) == True
+    assert queue_priority_obj.head.data == {"priority": f'data_7'}
+
+def  test_09_02_insert_with_priority(queue_priority_obj_filled_2):
+    """
+    Тест для проверки добавление в частично заполненный стек,
+    не приоритетными элементами
+    """
+    assert queue_priority_obj_filled_2.insert_with_priority({"priority": f'data_7'}) == True
+    assert queue_priority_obj_filled_2.head.data == {"priority": f'data_7'}
+
+def test_09_03_insert_with_priority(queue_priority_obj_filled_1):
+    """
+      Тест для проверки добавление в частично заполненный стек,
+      приоритетными и не приоритетными элементами
+      """
+    assert queue_priority_obj_filled_1.insert_with_priority({"priority": f'data_7'}) == True
+    assert queue_priority_obj_filled_1.head.data != {"priority": f'data_7'}
+    assert queue_priority_obj_filled_1.tail.data != {"priority": f'data_7'}
+
+def test_09_04_insert_with_priority(queue_priority_obj_filled_3):
+    """
+      Тест для проверки добавление в частично заполненный стек,
+      приоритетными элементами
+      """
+    assert queue_priority_obj_filled_3.insert_with_priority({"priority": f'data_7'}) == True
+    assert queue_priority_obj_filled_3.tail.data == {"priority": f'data_7'}

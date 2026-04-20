@@ -1,5 +1,5 @@
 from Class.my_class import Node,Queue
-# IsEmpty —роверка очереди на пустоту.
+# IsEmpty — проверка очереди на пустоту.
 # ■ IsFull — проверка очереди на заполнение.
 # ■ Enqueue — добавление элемента в очередь.
 # ■ Dequeue — удаление элемента из очереди.
@@ -45,11 +45,10 @@ if __name__ == '__main__':
         elif navigation == '4':
 
             list_queue.remove(queue_1.dequeue())
-            # print(queue_1.dequeue())
             print('Номер был успешно удален')
             print(list_queue)
         elif navigation == '5':
             queue_1.show()
 
-    # node = Node(d1)
-    # queue_1 = Queue(10, node, node)
+        else:
+            print("Такого варианта нету")

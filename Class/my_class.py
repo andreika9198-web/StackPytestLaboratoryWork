@@ -307,7 +307,7 @@ class User:
          param data:
             data: имя пользователя для поиска
             new_data: новое значение
-            search: поле для изменения ('name', 'password', 'email' и т.д.)
+            search: поле для изменения ('name', 'password')
         return:
             True если данные успешно изменены,
             False если очередь пуста или пользователь не найден
@@ -354,6 +354,7 @@ if __name__ == '__main__':
     user = User(node, node)
     user.add_user({"name": "Макс", "password": "123"})
     user.add_user({"name": "Алекс", "password": "123"})
+    user.add_user({"name": "Иван", "password": "123"})
     user.show()
     print('_____')
     user.remove_user("Иван")

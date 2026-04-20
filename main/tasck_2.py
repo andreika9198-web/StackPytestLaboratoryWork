@@ -12,7 +12,6 @@ from Class.my_class import QueuePriority
 if __name__ == '__main__':
     queue_1 = QueuePriority(10)
     print('Печать')
-    # list_queue = []
     while True:
         navigation = input(f"""
 1.Проверка очереди на пустоту.

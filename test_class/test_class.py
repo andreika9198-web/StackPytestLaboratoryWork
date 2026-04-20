@@ -65,7 +65,26 @@ def test_05_02_peek_last(queue_obj_filled):
     assert queue_obj_filled.tail.data == 4
 
 def test_06_01_show(queue_obj):
+    """
+    Тест для проверки отображения всех элементов из пустого стека
+    """
     assert queue_obj.show() == False
 
 def test_06_02_show(queue_obj_filled):
+    """
+    Тест для проверки отображения всех элементов из стека
+    """
     assert queue_obj_filled.show() == True
+
+def test_07_01_is_full(queue_obj_full):
+    """
+       Тест для проверки является ли очередь полностью заполненной(стек полон)
+    """
+    assert queue_obj_full.is_full() == True
+
+def test_07_02_is_full(queue_obj_filled):
+    """
+       Тест для проверки является ли очередь полностью заполненной
+       (стек частично заполнен)
+    """
+    assert queue_obj_filled.is_full() == False

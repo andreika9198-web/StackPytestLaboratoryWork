@@ -176,7 +176,35 @@ def test_11_03_peek(queue_priority_obj_filled_2):
     assert queue_priority_obj_filled_2.peek() == False
 
 def test_12_01_show(queue_priority_obj):
+    """
+    Тест для проверки отображения всех элементов очереди.(пустой стек)
+    """
     assert queue_priority_obj.show() == False
 
 def test_12_02_show(queue_priority_obj_filled_1):
+    """
+    Тест для проверки отображения всех элементов очереди.
+    (частично заполненного стека)
+    """
     assert queue_priority_obj_filled_1.show() == True
+
+def test_13_01_enqueue(queue_priority_obj_filled_1):
+    """
+    Тест для проверки добавление в не полный стек, свободное место 1,
+     но зарезервированного для приоритета
+    """
+    assert queue_priority_obj_filled_1.enqueue({"no_priority": f'data_7'}) == False
+
+def  test_13_02_enqueue(queue_priority_obj):
+    """
+    Тест для проверки удаления данных из пустого стека
+    """
+    assert queue_priority_obj.enqueue({"no_priority": f'data_7'}) == True
+    assert queue_priority_obj.head.data == {"no_priority": f'data_7'}
+
+def test_13_03_enqueue(queue_priority_obj_filled_2):
+    """
+    Тест для проверки удаления данных из стека
+    """
+    assert queue_priority_obj_filled_2.enqueue({"no_priority": f'data_7'}) == True
+    assert queue_priority_obj_filled_2.tail.data == {"no_priority": f'data_7'}

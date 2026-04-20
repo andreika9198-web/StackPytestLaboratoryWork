@@ -232,9 +232,10 @@ class QueuePriority(Queue):
                 #     print(current.data)
                 current = current.next_node
             return True #Добавил для тестирования
+
     def enqueue(self, data):
         """
-        Метод для добавления данных в очередь
+        Метод для добавления данных в очередь не приоритетных элементов
         :param data:
             принимает любые данные
         :return:
@@ -242,7 +243,7 @@ class QueuePriority(Queue):
         if self.size() >= self.max_length - 2:
             #Зарезервировал два элемента для приоритетных
             print('Очередь переполнена')
-            return
+            return False
 
         new_node = Node(data)
         if not self.head:
@@ -250,6 +251,7 @@ class QueuePriority(Queue):
         else:
             self.tail.next_node = new_node
         self.tail = new_node
+        return True
 
 class User:
     def __init__(self,head=None, tail=None):

@@ -19,3 +19,10 @@ def test_02_02_dequeue(queue_obj_filled):
 
 def test_03_01_size(queue_obj_filled):
     assert  queue_obj_filled.size() == 5
+
+def test_04_01_peek_first(queue_obj):
+    assert queue_obj.peek_first() == False
+
+def test_04_02_peek_first(queue_obj_filled):
+    assert queue_obj_filled.peek_first() == True
+    assert queue_obj_filled.head.data == 0

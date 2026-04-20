@@ -74,8 +74,10 @@ class Queue:
         """
         if not self.head:
             print(f'Очередь пуста')
+            return False
         else:
             print(self.head.data)
+            return True
 
     def peek_last(self):
         """

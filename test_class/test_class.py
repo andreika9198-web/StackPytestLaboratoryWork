@@ -50,3 +50,16 @@ def test_04_02_peek_first(queue_obj_filled):
     """
     assert queue_obj_filled.peek_first() == True
     assert queue_obj_filled.head.data == 0
+
+def test_05_01_peek_last(queue_obj):
+    """
+    Тест для проверки отображения последнего элемента из пустого стека
+    """
+    assert queue_obj.peek_last() == False
+
+def test_05_02_peek_last(queue_obj_filled):
+    """
+    Тест для проверки отображения последнего элемента из стека
+    """
+    assert queue_obj_filled.peek_last() == True
+    assert queue_obj_filled.tail.data == 4

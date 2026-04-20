@@ -1,4 +1,4 @@
-from Class.my_class import Node,Queue
+from Class.my_class import Queue
 # IsEmpty — проверка очереди на пустоту.
 # ■ IsFull — проверка очереди на заполнение.
 # ■ Enqueue — добавление элемента в очередь.

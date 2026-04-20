@@ -30,7 +30,7 @@ class Queue:
         """
         if self.size() >= self.max_length:
             print('Очередь переполнена')
-            return
+            return False
 
         new_node = Node(data)
         if not self.head:
@@ -38,6 +38,7 @@ class Queue:
         else:
             self.tail.next_node = new_node
         self.tail = new_node
+        return True
 
     def dequeue(self):
         """
@@ -46,7 +47,7 @@ class Queue:
             None или dequeue_item.data(удаленные данные)
         """
         if not self.head:
-            return None
+            return False
         else:
             dequeue_item = self.head
             self.head = self.head.next_node

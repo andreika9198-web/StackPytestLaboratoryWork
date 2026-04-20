@@ -174,3 +174,9 @@ def test_11_03_peek(queue_priority_obj_filled_2):
     элемента(частично заполненного стека не приоритетными элементами)
     """
     assert queue_priority_obj_filled_2.peek() == False
+
+def test_12_01_show(queue_priority_obj):
+    assert queue_priority_obj.show() == False
+
+def test_12_02_show(queue_priority_obj_filled_1):
+    assert queue_priority_obj_filled_1.show() == True

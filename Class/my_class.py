@@ -216,6 +216,7 @@ class QueuePriority(Queue):
         """
         if not self.head:
             print(f'Очередь пуста')
+            return False
         else:
             current = self.head
             count = 0
@@ -230,7 +231,7 @@ class QueuePriority(Queue):
                 #     count += 1
                 #     print(current.data)
                 current = current.next_node
-
+            return True #Добавил для тестирования
     def enqueue(self, data):
         """
         Метод для добавления данных в очередь

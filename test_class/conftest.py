@@ -56,12 +56,7 @@ def queue_priority_obj_full():
     """
     queue = QueuePriority(10)
     for i in range(10):
-        # queue.enqueue({"priority": f'data_{i}'})
         queue.insert_with_priority({"priority": f'data_{i}'})
-    # for i in range(3):
-    #     queue.enqueue({"no_priority": f'data_{i}'})
-    # queue.insert_with_priority({"no_priority": f'data_{5}'})
-    # queue.insert_with_priority({"no_priority": f'data_{6}'})
     return queue
 
 @pytest.fixture()
@@ -87,10 +82,16 @@ def queue_priority_obj_filled_3():
 #Тестируем класс User
 @pytest.fixture()
 def user_obj():
+    """
+    Создал пустой стек
+    """
     return User()
 
 @pytest.fixture()
 def user_obj_filled():
+    """
+    Создал частично заполненный стек
+    """
     user = User()
     user.add_user({"name": "Иван", "password": "123"})
     user.add_user({"name": "Макс", "password": "123"})

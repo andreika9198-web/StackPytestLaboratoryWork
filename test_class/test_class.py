@@ -268,3 +268,15 @@ def test_17_02_update_field(user_obj_filled):
     assert user_obj_filled.update_field("Алекс", "Антон", "name") == False
     assert user_obj_filled.update_field("Антон", "456", "password") == True
 
+def test_18_01_is_user(user_obj):
+    """
+    Тест для проверки существования пользователя в очереди.(пустой стек)
+    """
+    assert user_obj.is_user("Алекс") == False
+
+def test_18_02_is_user(user_obj_filled):
+    """
+    Тест для проверки существования пользователя в очереди
+    """
+    assert user_obj_filled.is_user("Алекс") == True
+    assert user_obj_filled.is_user("Олег") == False

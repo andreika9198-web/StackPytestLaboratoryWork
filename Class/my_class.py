@@ -40,6 +40,7 @@ class Queue:
         self.tail = new_node
         return True
 
+
     def dequeue(self):
         """
         Метод для удаления данных из очереди
@@ -268,8 +269,7 @@ class User:
         if not self.head:
             self.head = new_node
         else:
-            new_node.next_node = self.head
-            self.head = new_node
+            self.tail.next_node = new_node
         self.tail = new_node
 
     def remove_user(self, rm_data):
@@ -287,6 +287,8 @@ class User:
             removed_node = self.head
             self.head = self.head.next_node
             print(f"Удалили пользователя {removed_node.data['name']}")
+            if not self.head: # очередь стала пустой
+                self.tail = None
             return removed_node.data
 
         current_node = self.head
@@ -294,10 +296,11 @@ class User:
             if current_node.next_node.data['name'] == rm_data:
                 removed_node = current_node.next_node
                 current_node.next_node = current_node.next_node.next_node
+                if removed_node is self.tail:
+                    self.tail = current_node
+                print(f"Удалили пользователя {removed_node.data['name']}")
                 return removed_node.data
             current_node = current_node.next_node
-        if not self.head:  # очередь стала пустой
-            self.tail = None
         return False
 
     def show(self):

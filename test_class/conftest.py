@@ -79,3 +79,4 @@ def user_obj_filled():
     user.add_user({"name": "Иван", "password": "123"})
     user.add_user({"name": "Макс", "password": "123"})
     user.add_user({"name": "Алекс", "password": "123"})
+    return user

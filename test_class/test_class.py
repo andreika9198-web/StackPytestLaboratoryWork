@@ -216,3 +216,14 @@ def test_14_01_add_user(user_obj):
     user_obj.add_user({"name": "Макс", "password": "123"})
     assert user_obj.tail.data == {"name": "Макс", "password": "123"}
 
+def test_15_01_remove_user(user_obj):
+   assert user_obj.remove_user('Макс') == False
+
+def test_15_02_remove_user(user_obj):
+    user_obj.add_user({"name": "Иван", "password": "123"})
+    assert user_obj.remove_user("Иван") == {"name": "Иван", "password": "123"}
+
+def test_15_03_remove_user(user_obj_filled):
+    assert user_obj_filled.remove_user("Алекс") == ({"name": "Алекс", "password": "123"})
+    assert user_obj_filled.tail.data == {"name": "Макс", "password": "123"}
+

@@ -51,8 +51,11 @@ if __name__ == '__main__':
                 else:
                     print("Такой номер уже есть")
         elif navigation == '4':
-            list_queue.remove(queue_1.dequeue())
-            print('Номер был успешно удален')
+            if  list_queue:
+                list_queue.remove(queue_1.dequeue())
+                print('Номер был успешно удален')
+            else:
+                print("Очередь пуста")
         elif navigation == '5':
             queue_1.show()
         else:

@@ -242,7 +242,29 @@ def test_15_03_remove_user(user_obj_filled):
     assert user_obj_filled.remove_user("Антон") == False
 
 def test_16_01_show(user_obj):
+    """
+    Тест для проверки отображения всех элементов из пустого стека
+    """
     assert user_obj.show() == False
 
 def test_16_02_show(user_obj_filled):
+    """
+    Тест для проверки отображения всех элементов из стека
+    """
     assert user_obj_filled.show() == True
+
+def test_17_01_update_field(user_obj):
+    """
+    Тест для проверки изменения имени из пустого стека
+    """
+    assert user_obj.update_field("Алекс","Антон","name") == False
+    assert user_obj.update_field("Алекс", "456", "password") == False
+
+def test_17_02_update_field(user_obj_filled):
+    """
+    Тест для проверки изменения имени и пароля
+    """
+    assert user_obj_filled.update_field("Алекс","Антон","name") == True
+    assert user_obj_filled.update_field("Алекс", "Антон", "name") == False
+    assert user_obj_filled.update_field("Антон", "456", "password") == True
+

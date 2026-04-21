@@ -309,11 +309,13 @@ class User:
         """
         if not self.head:
             print(f'Очередь пуста')
+            return False
         else:
             current = self.head
             while current:
                 print(current.data)
                 current = current.next_node
+        return True
 
     def update_field(self,data,new_data,search):
         """

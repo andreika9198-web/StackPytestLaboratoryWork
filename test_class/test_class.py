@@ -234,8 +234,15 @@ def test_15_02_remove_user(user_obj):
 
 def test_15_03_remove_user(user_obj_filled):
     """
-    Тест для проверки удаления данных из хвоста стека
+    Тест для проверки удаления данных из хвоста стека и проверка на
+    отсутствие удаляемых данных
     """
     assert user_obj_filled.remove_user("Алекс") == ({"name": "Алекс", "password": "123"})
     assert user_obj_filled.tail.data == {"name": "Макс", "password": "123"}
+    assert user_obj_filled.remove_user("Антон") == False
 
+def test_16_01_show(user_obj):
+    assert user_obj.show() == False
+
+def test_16_02_show(user_obj_filled):
+    assert user_obj_filled.show() == True

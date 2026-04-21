@@ -139,6 +139,12 @@ def test_09_04_insert_with_priority(queue_priority_obj_filled_3):
     assert queue_priority_obj_filled_3.insert_with_priority({"priority": f'data_7'}) == True
     assert queue_priority_obj_filled_3.tail.data == {"priority": f'data_7'}
 
+def test_09_05_insert_with_priority(queue_priority_obj_full):
+    """
+    Тест для проверки добавление в заполненный стек
+    """
+    assert queue_priority_obj_full.insert_with_priority({"priority": f'data_7'}) == False
+
 def test_10_01_pull_highest_priority_element(queue_priority_obj):
     """
     Тест для проверки удаления из пустого стека стек,

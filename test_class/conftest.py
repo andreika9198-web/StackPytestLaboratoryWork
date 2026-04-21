@@ -27,6 +27,7 @@ def queue_obj_filled():
     for i in range(5):
         queue.enqueue(i)
     return queue
+
 #Тестируем класс QueuePriority
 @pytest.fixture()
 def queue_priority_obj():
@@ -46,6 +47,21 @@ def queue_priority_obj_filled_1():
         queue.enqueue({"priority": f'data_{i}'})
     for i in range(4):
         queue.enqueue({"no_priority": f'data_{i}'})
+    return queue
+
+@pytest.fixture()
+def queue_priority_obj_full():
+    """
+    Создал частично заполненный стек
+    """
+    queue = QueuePriority(10)
+    for i in range(10):
+        # queue.enqueue({"priority": f'data_{i}'})
+        queue.insert_with_priority({"priority": f'data_{i}'})
+    # for i in range(3):
+    #     queue.enqueue({"no_priority": f'data_{i}'})
+    # queue.insert_with_priority({"no_priority": f'data_{5}'})
+    # queue.insert_with_priority({"no_priority": f'data_{6}'})
     return queue
 
 @pytest.fixture()

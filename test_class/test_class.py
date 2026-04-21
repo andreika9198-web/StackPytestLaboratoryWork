@@ -211,19 +211,31 @@ def test_13_03_enqueue(queue_priority_obj_filled_2):
 
 #Тестируем класс User
 def test_14_01_add_user(user_obj):
+    """
+    Тест для проверки добавление в данных стек
+    """
     user_obj.add_user({"name": "Иван", "password": "123"})
     assert user_obj.head.data == {"name": "Иван", "password": "123"}
     user_obj.add_user({"name": "Макс", "password": "123"})
     assert user_obj.tail.data == {"name": "Макс", "password": "123"}
 
 def test_15_01_remove_user(user_obj):
-   assert user_obj.remove_user('Макс') == False
+    """
+    Тест для проверки удаления данных из пустого стека
+    """
+    assert user_obj.remove_user('Макс') == False
 
 def test_15_02_remove_user(user_obj):
+    """
+    Тест для проверки удаления данных из головы стека
+    """
     user_obj.add_user({"name": "Иван", "password": "123"})
     assert user_obj.remove_user("Иван") == {"name": "Иван", "password": "123"}
 
 def test_15_03_remove_user(user_obj_filled):
+    """
+    Тест для проверки удаления данных из хвоста стека
+    """
     assert user_obj_filled.remove_user("Алекс") == ({"name": "Алекс", "password": "123"})
     assert user_obj_filled.tail.data == {"name": "Макс", "password": "123"}
 

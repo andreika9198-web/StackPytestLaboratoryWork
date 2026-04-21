@@ -270,6 +270,7 @@ class User:
         else:
             new_node.next_node = self.head
             self.head = new_node
+        self.tail = new_node
 
     def remove_user(self, rm_data):
         """
@@ -281,7 +282,7 @@ class User:
         """
         if not self.head:
             print(f'Список пуст')
-            return None
+            return False
         if rm_data == self.head.data['name']:
             removed_node = self.head
             self.head = self.head.next_node
@@ -295,7 +296,9 @@ class User:
                 current_node.next_node = current_node.next_node.next_node
                 return removed_node.data
             current_node = current_node.next_node
-        return None
+        if not self.head:  # очередь стала пустой
+            self.tail = None
+        return False
 
     def show(self):
         """

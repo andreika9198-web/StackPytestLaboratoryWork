@@ -208,3 +208,11 @@ def test_13_03_enqueue(queue_priority_obj_filled_2):
     """
     assert queue_priority_obj_filled_2.enqueue({"no_priority": f'data_7'}) == True
     assert queue_priority_obj_filled_2.tail.data == {"no_priority": f'data_7'}
+
+#Тестируем класс User
+def test_14_01_add_user(user_obj):
+    user_obj.add_user({"name": "Иван", "password": "123"})
+    assert user_obj.head.data == {"name": "Иван", "password": "123"}
+    user_obj.add_user({"name": "Макс", "password": "123"})
+    assert user_obj.tail.data == {"name": "Макс", "password": "123"}
+

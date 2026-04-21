@@ -1,6 +1,6 @@
 import pytest
 from Class.my_class import Queue,QueuePriority,User
-
+#Тестируем класс Queue
 @pytest.fixture()
 def queue_obj():
     """
@@ -27,7 +27,7 @@ def queue_obj_filled():
     for i in range(5):
         queue.enqueue(i)
     return queue
-
+#Тестируем класс QueuePriority
 @pytest.fixture()
 def queue_priority_obj():
     """
@@ -68,14 +68,14 @@ def queue_priority_obj_filled_3():
         queue.enqueue({"priority": f'data_{i}'})
     return queue
 
-def queue_priority_obj_full():
-    """
-    Создал полный стек
-    """
-    queue = QueuePriority(10)
-    for i in range(5):
-        queue.enqueue({"priority": f'data_{i}'})
-    for i in range(5):
-        queue.enqueue({"no_priority": f'data_{i}'})
-    return queue
-# ({"no_priority": "7"})
+#Тестируем класс User
+@pytest.fixture()
+def user_obj():
+    return User()
+
+@pytest.fixture()
+def user_obj_filled():
+    user = User()
+    user.add_user({"name": "Иван", "password": "123"})
+    user.add_user({"name": "Макс", "password": "123"})
+    user.add_user({"name": "Алекс", "password": "123"})
